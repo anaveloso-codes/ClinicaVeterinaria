@@ -2,6 +2,7 @@
 using ClinicaVeterinaria.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClinicaVeterinaria.Controllers
 {
@@ -19,6 +20,14 @@ namespace ClinicaVeterinaria.Controllers
         public async Task<ActionResult<IEnumerable<Consulta>>> GetConsultas()
         {
             return await _context.Consultas.ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CriarConsulta(Consulta consulta)
+        {
+            _context.Consultas.Add(consulta);
+            await _context.SaveChangesAsync();
+            return Ok("Consultas salvo com sucesso!!");
         }
     }
 }

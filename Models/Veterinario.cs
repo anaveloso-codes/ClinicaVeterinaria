@@ -7,5 +7,7 @@
         public string CRMV { get; set; }
         public string Especialidade { get; set; }
 
+        public ICollection<Veterinario> Veterinarios { get; set; } 
+
     }
 }
